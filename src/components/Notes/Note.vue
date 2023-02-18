@@ -4,14 +4,17 @@
             <div class="content">
                 {{ note.content }}
                 <div class="has-text-right has-text-grey-light mt-2">
-                    <small> {{ note.content.length }} characters </small>
+                    <small> {{ characterLength }} </small>
                 </div>
             </div>
         </div>
         <footer class="card-footer">
             <a class="card-footer-item">Edit</a>
 
-            <a @click="DelNote(index)" class="card-footer-item">
+            <a
+              @click="DelNote(index)"
+              class="card-footer-item"
+            >
                 Delete
             </a>
         </footer>
@@ -28,4 +31,13 @@ const props = defineProps({
         required: true
     }
 })
+
+const characterLength = computed(() => {
+    length = props.note.content.length;
+    let description = props.note.content.length > 1 ?
+    'characters' : 'character'
+
+    return `${props.note.content.length} ${description}` 
+})
+
 </script>
