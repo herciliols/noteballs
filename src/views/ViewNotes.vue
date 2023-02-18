@@ -3,57 +3,25 @@
         <div class="card has-background-info-dark p-4 mb-5">
             <div class="field">
                 <div class="control">
-                    <textarea
-                      v-model="NewNote"
-                      class="textarea"
-                      placeholder="Text here!"
-                      ref="NewNoteRef"
-                    />
+                    <textarea class="textarea" placeholder="Text here!" v-model="NewNote" ref="NewNoteRef" />
                 </div>
             </div>
 
             <div class="field is-grouped is-grouped-right">
                 <div class="control">
-                    <button
-                      :disabled="!NewNote"
-                      @click="addNote()"
-                      class="button is-white"
-                    >Add New Note</button>
+                    <button :disabled="!NewNote" @click="addNote()" class="button is-white">Add New Note</button>
                 </div>
             </div>
         </div>
-
-        <div
-          v-for="(note, index) in notes"
-          :key="note.id"
-          :note="note"
-          class="card mb-4"
-        >
-            <div class="card-content">
-                <div class="content">
-                    {{ note.content }}
-                    <div class="has-text-right has-text-grey-light mt-2">
-                        <small> {{ note.content.length }} characters </small>
-                    </div>
-                </div>
-            </div>
-            <footer class="card-footer">
-                <a class="card-footer-item">Edit</a>
-
-                <a @click="DelNote(index)" class="card-footer-item">
-                    Delete
-                </a>
-            </footer>
-        </div>
-
-
-
+        <Note v-for="(note, index) in notes" :key="note.id" :note="note" />
 
     </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import Note from '@/components/Notes/Note.vue';
+
 
 const notes = ref([]);
 const NewNote = ref();
