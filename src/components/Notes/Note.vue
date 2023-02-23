@@ -1,30 +1,75 @@
 <template>
     <div class="card mb-4">
         <div class="card-content">
-            <div class="content">
-                {{ note.content }}
-                <div class="has-text-right has-text-grey-light mt-2">
+            <div v-show="!editNote" class="content">
+                {{ getNoteByIndex[index].content }}
+                <div
+                  class="has-text-right has-text-grey-light mt-2"
+                >
                     <small> {{ characterLength }} </small>
                 </div>
             </div>
+            
+            <div
+                v-show="editNote"
+                class="content"
+            >
+              <textarea
+                v-model="NewNote"
+                class="textarea"
+                placeholder="Text here!"
+              >
+                {{ getNoteByIndex[index].content }}
+              </textarea>
+            </div>
         </div>
-        <footer class="card-footer">
-            <a class="card-footer-item">Edit</a>
+        <footer
+          class="card-footer"
+        >
             <a
+              v-show="editNote"
+              @click="EditNote(index)"
+              class="card-footer-item "
+            >Cancel</a>
+
+            <a
+              v-show="editNote"
+              @click="UpdateNote(index)"
+              class="card-footer-item"
+            >Update</a>
+
+            
+
+            <a
+              v-show="!editNote"
+              @click="EditNote(index)"
+              class="card-footer-item"
+            >Edit</a>
+            
+            <a
+              v-show="!editNote"
               @click="DelNote(index)"
               class="card-footer-item"
-            >Delete 
-            </a>
+            >Delete</a>
         </footer>
+        
     </div>
+
+
+
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { ref, computed } from 'vue';
+import { storeToRefs } from 'pinia'
 import { useStoreNotes } from '@/stores/storeNotes';
 const storeNotes = useStoreNotes();
 
-const { delNote } = storeNotes;
+const { delNote, updateNote } = storeNotes;
+const { getNoteByIndex } = storeToRefs(storeNotes);
+
+const editNote = ref(false);
+const NewNote = ref(null);
 
 const characterLength = computed(() => {
     length = props.note.content.length;
@@ -38,13 +83,23 @@ function DelNote (index){
     delNote(index);
 }
 
+function EditNote (index){
+    NewNote.value = getNoteByIndex.value[index].content;
+    editNote.value = !editNote.value;
+}
+
+function UpdateNote (index){
+    updateNote(index, NewNote.value);
+    editNote.value = !editNote.value;
+}
+
 const props = defineProps({
     note: {
         type: Object,
         required: true
     },
     index: {
-        type: Object,
+        type: Number,
         required: true
     }
 })

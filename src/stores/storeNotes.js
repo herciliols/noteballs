@@ -7,6 +7,14 @@ export const useStoreNotes = defineStore('storeNotes', {
         NewNote: null
     }
   },
+
+
+  getters: {
+    getNoteByIndex(state) {
+       return state.notes;
+    },
+  },
+
   actions: {
     addNote() {
         this.notes.unshift({
@@ -17,6 +25,10 @@ export const useStoreNotes = defineStore('storeNotes', {
     },
     delNote(index) {
         this.notes.splice(index, 1);
+    },
+    updateNote(index, NewNote) {
+        this.notes[index].content = NewNote;
     }
   },
+
 })
