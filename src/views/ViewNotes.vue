@@ -9,36 +9,36 @@
 
             <div class="field is-grouped is-grouped-right">
                 <div class="control">
-                    <button :disabled="!NewNote" @click="addNote()" class="button is-white">Add New Note</button>
+                    <button :disabled="!NewNote" @click="AddNote()" class="button is-white">Add New Note</button>
                 </div>
             </div>
         </div>
-        <Note v-for="(note, index) in notes" :key="note.id" :note="note" />
+        <Note
+          v-for="(note, index) in notes"
+          :key="note.id"
+          :note="note"
+          :index="index"
+        />
 
     </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import { storeToRefs } from 'pinia'
 import Note from '@/components/Notes/Note.vue';
+import { useStoreNotes } from '@/stores/storeNotes';
 
-
-const notes = ref([]);
-const NewNote = ref();
+const storeNotes = useStoreNotes();
+const { notes, NewNote } = storeToRefs(storeNotes);
+const { addNote } = storeNotes;
 const NewNoteRef = ref(null);
 
-
-const addNote = () => {
-    notes.value.unshift({
-        id: notes.value.length,
-        content: NewNote.value
-    });
-    NewNote.value = null;
+function AddNote(){
+    addNote();
     NewNoteRef.value.focus();
 }
 
-const DelNote = (index) => {
-    notes.value.splice(index, 1);
-}
+
 
 </script>

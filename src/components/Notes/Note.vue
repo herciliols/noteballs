@@ -10,12 +10,10 @@
         </div>
         <footer class="card-footer">
             <a class="card-footer-item">Edit</a>
-
             <a
               @click="DelNote(index)"
               class="card-footer-item"
-            >
-                Delete
+            >Delete 
             </a>
         </footer>
     </div>
@@ -23,21 +21,31 @@
 
 <script setup>
 import { computed } from 'vue';
+import { useStoreNotes } from '@/stores/storeNotes';
+const storeNotes = useStoreNotes();
 
-
-const props = defineProps({
-    note: {
-        type: Object,
-        required: true
-    }
-})
+const { delNote } = storeNotes;
 
 const characterLength = computed(() => {
     length = props.note.content.length;
     let description = props.note.content.length > 1 ?
     'characters' : 'character'
-
     return `${props.note.content.length} ${description}` 
 })
 
+
+function DelNote (index){
+    delNote(index);
+}
+
+const props = defineProps({
+    note: {
+        type: Object,
+        required: true
+    },
+    index: {
+        type: Object,
+        required: true
+    }
+})
 </script>
