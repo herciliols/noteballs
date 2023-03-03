@@ -13,6 +13,18 @@ export const useStoreNotes = defineStore('storeNotes', {
     getNoteByIndex(state) {
        return state.notes;
     },
+
+    totalNotesCount: (state) =>{
+      return state.notes.length
+    },
+
+    totalCharactersCount: (state) =>{
+      let count = 0
+      state.notes.forEach(note => {
+         count += note.content.length
+      })
+      return count;
+    }
   },
 
   actions: {
@@ -23,9 +35,11 @@ export const useStoreNotes = defineStore('storeNotes', {
         });   
         this.NewNote = null;
     },
+
     delNote(index) {
         this.notes.splice(index, 1);
     },
+
     updateNote(index, NewNote) {
         this.notes[index].content = NewNote;
     }
