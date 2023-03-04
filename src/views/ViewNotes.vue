@@ -9,8 +9,10 @@
                       placeholder="Text here!"
                       ref="NewNoteRef"
                       v-autofocus
+                      maxlength="100"
                     />
                 </div>
+                <div class="is-size-6 has-text-grey-lighter">{{ NewNote.length }}/100</div>
             </div>
 
             <div class="field is-grouped is-grouped-right">
@@ -30,7 +32,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { storeToRefs } from 'pinia'
 import Note from '@/components/Notes/Note.vue';
 import { useStoreNotes } from '@/stores/storeNotes';
@@ -46,6 +48,11 @@ function AddNote(){
     NewNoteRef.value.focus();
 }
 
+watch(NewNote, (newValue) => {
+    if (newValue.length===100){
+        alert('Only 100 characters allowed gosh darnit!!');
+    }
+})
 
 
 </script>
