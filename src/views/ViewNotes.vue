@@ -47,7 +47,7 @@ function AddNote(){
 }
 
 watch(NewNote, (newValue) => {
-    if (newValue.length===100){
+    if(NewNote.length===100){
         alert('Only 100 characters allowed gosh darnit!!');
     }
 })

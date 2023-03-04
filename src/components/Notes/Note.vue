@@ -48,11 +48,16 @@
             
             <a
               v-show="!editNote"
-              @click="DelNote(index)"
+              @click="modals.deleteNote = true"
               class="card-footer-item"
             >Delete</a>
         </footer>
-        
+
+        <ModalDeleteNote
+          v-if="modals.deleteNote"
+          v-model="modals.deleteNote"
+          :indexDelete="index"
+        />
     </div>
 
 
@@ -60,16 +65,17 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, reactive } from 'vue'
 import { storeToRefs } from 'pinia'
-import { useStoreNotes } from '@/stores/storeNotes';
-const storeNotes = useStoreNotes();
+import { useStoreNotes } from '@/stores/storeNotes'
+import ModalDeleteNote from '@/components/Notes/ModalDeleteNote.vue'
+const storeNotes = useStoreNotes()
 
-const { delNote, updateNote } = storeNotes;
-const { getNoteByIndex } = storeToRefs(storeNotes);
+const { updateNote } = storeNotes
+const { getNoteByIndex } = storeToRefs(storeNotes)
 
-const editNote = ref(false);
-const NewNote = ref(null);
+const editNote = ref(false)
+const NewNote = ref(null)
 
 const characterLength = computed(() => {
     length = props.note.content.length;
@@ -79,18 +85,19 @@ const characterLength = computed(() => {
 })
 
 
-function DelNote (index){
-    delNote(index);
-}
+const modals = reactive({
+  deleteNote: false
+})
+
 
 function EditNote (index){
-    NewNote.value = getNoteByIndex.value[index].content;
-    editNote.value = !editNote.value;
+    NewNote.value = getNoteByIndex.value[index].content
+    editNote.value = !editNote.value
 }
 
 function UpdateNote (index){
-    updateNote(index, NewNote.value);
-    editNote.value = !editNote.value;
+    updateNote(index, NewNote.value)
+    editNote.value = !editNote.value
 }
 
 const props = defineProps({
