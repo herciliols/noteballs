@@ -12,9 +12,7 @@
                       maxlength="100"
                     />
                 </div>
-                <div class="is-size-6 has-text-grey-lighter">{{ NewNote.length }}/100</div>
             </div>
-
             <div class="field is-grouped is-grouped-right">
                 <div class="control">
                     <button :disabled="!NewNote" @click="AddNote()" class="button is-white">Add New Note</button>
