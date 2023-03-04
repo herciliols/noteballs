@@ -3,7 +3,13 @@
         <div class="card has-background-info-dark p-4 mb-5">
             <div class="field">
                 <div class="control">
-                    <textarea class="textarea" placeholder="Text here!" v-model="NewNote" ref="NewNoteRef" />
+                    <textarea
+                      v-model="NewNote"
+                      class="textarea"
+                      placeholder="Text here!"
+                      ref="NewNoteRef"
+                      v-autofocus
+                    />
                 </div>
             </div>
 
@@ -28,6 +34,7 @@ import { ref } from 'vue';
 import { storeToRefs } from 'pinia'
 import Note from '@/components/Notes/Note.vue';
 import { useStoreNotes } from '@/stores/storeNotes';
+import { vAutofocus } from '@/directives/vAutoFocus.js';
 
 const storeNotes = useStoreNotes();
 const { notes, NewNote } = storeToRefs(storeNotes);
