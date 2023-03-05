@@ -6,16 +6,16 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted, watch } from 'vue'
 import NavBar from '@/components/Layout/NavBar.vue'
 import { useStoreNotes } from '@/stores/storeNotes'
 
 
-const { getNotes } = useStoreNotes();
+const StoreNotes  = useStoreNotes()
 
 
 onMounted(() => {
-    getNotes();
+    StoreNotes.getNotes()
 })
 </script>
 
