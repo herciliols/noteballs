@@ -6,7 +6,7 @@
                 <div
                   class="has-text-right has-text-grey-light mt-2"
                 >
-                    <small> {{ characterLength }} </small>
+                    <small> {{ characterLength }}</small>
                 </div>
             </div>
             
@@ -19,7 +19,7 @@
                 class="textarea"
                 placeholder="Text here!"
               >
-                {{ getNoteByIndex[index].content }}
+                {{ getNoteByIndex[index].content }} 
               </textarea>
             </div>
         </div>
@@ -56,7 +56,7 @@
         <ModalDeleteNote
           v-if="modals.deleteNote"
           v-model="modals.deleteNote"
-          :indexDelete="index"
+          :indexDelete="getNoteByIndex[index].id"
         />
     </div>
 

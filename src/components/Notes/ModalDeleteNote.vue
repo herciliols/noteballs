@@ -11,7 +11,7 @@
         </button>
         </header>
         <section class="modal-card-body">
-            Are you sure you want to delete this note?
+            Are you sure you want to delete this note? 
         </section>
         <footer class="modal-card-foot is-justify-content-flex-end">
             <button 
