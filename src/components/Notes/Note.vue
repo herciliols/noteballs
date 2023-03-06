@@ -6,7 +6,7 @@
                 <div
                   class="has-text-right has-text-grey-light mt-2"
                 >
-                    <small> {{ characterLength }}</small>
+                    <small> {{ characterLength }} </small>
                 </div>
             </div>
             
@@ -34,12 +34,11 @@
 
             <a
               v-show="editNote"
-              @click="UpdateNote(index)"
+              @click="UpdateNote(getNoteByIndex[index].id)"
               class="card-footer-item"
             >Update</a>
 
             
-
             <a
               v-show="!editNote"
               @click="EditNote(index)"
