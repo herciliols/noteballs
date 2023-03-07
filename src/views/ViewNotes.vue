@@ -25,7 +25,6 @@
           :note="note"
           :index="index"
         />
-
     </div>
 </template>
 
