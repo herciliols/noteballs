@@ -19,12 +19,25 @@
                 </div>
             </div>
         </div>
-        <Note
-          v-for="(note, index) in notes"
-          :key="note.id"
-          :note="note"
-          :index="index"
+
+        <progress
+          v-if="!notesLoading"
+          class="progress is-large is-info"
+          max="100"
         />
+
+        <template 
+          v-else
+        >
+            <Note
+                v-for="(note, index) in notes"
+                :key="note.id"
+                :note="note"
+                :index="index"
+            />
+        </template>
+        
+       
     </div>
 </template>
 
@@ -36,7 +49,7 @@ import { useStoreNotes } from '@/stores/storeNotes';
 import { vAutofocus } from '@/directives/vAutoFocus.js';
 
 const storeNotes = useStoreNotes();
-const { notes, NewNote } = storeToRefs(storeNotes);
+const { notes, NewNote, notesLoading } = storeToRefs(storeNotes);
 const { addNote } = storeNotes;
 const NewNoteRef = ref(null);
 
