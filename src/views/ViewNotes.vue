@@ -26,15 +26,22 @@
           max="100"
         />
 
-        <template 
+        <template
           v-else
         >
             <Note
-                v-for="(note, index) in notes"
-                :key="note.id"
-                :note="note"
-                :index="index"
+              v-for="(note, index) in notes"
+              :key="note.id"
+              :index="index"
+              :note="note"
             />
+
+            <div
+              v-if="!notes.length"
+              class="is-size-4 has-text-centered has-text-grey-light is-family-monospace py-6" 
+            >
+                No notes here yet..
+            </div>
         </template>
         
        

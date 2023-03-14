@@ -50,10 +50,8 @@ export const useStoreNotes = defineStore('storeNotes', {
           }
           notes.push(note);
         })
-        setTimeout(() => {
           this.notes = notes
           this.notesLoading = true
-        }, 2000);
       })
     },
     
