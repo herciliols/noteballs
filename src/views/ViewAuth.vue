@@ -73,11 +73,10 @@ const onSubmit = () => {
   if (!credentials.email || !credentials.password){
     alert('Please enter an email and password gosh darnit!')
   }else{
-
     if(register.value){
       storeAuth.registerUser(credentials)
     }else{
-      console.log('Logar', credentials)
+      storeAuth.loginUser(credentials)
     }
 
   }
