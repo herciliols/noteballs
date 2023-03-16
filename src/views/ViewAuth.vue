@@ -16,42 +16,69 @@
         <div class="title has-text-centered">
           {{ formTitle }}
         </div>
-
-        <div class="field">
-          <label class="label">Email</label>
-          <div class="control">
-            <input
-              class="input"
-              type="email"
-              placeholder="e.g. alexsmith@gmail.com"
-            />
+        <form @submit.prevent="onSubmit">
+          <div class="field">
+            <label class="label">Email</label>
+            <div class="control">
+              <input
+                v-model="credentials.email"
+                class="input"
+                type="email"
+                placeholder="e.g. alexsmith@gmail.com"
+              />
+            </div>
           </div>
-        </div>
 
-        <div class="field">
-          <label class="label">Password</label>
-          <div class="control">
-            <input
-              class="input"
-              type="password"
-              placeholder="Enter a password"
-            />
+          <div class="field">
+            <label class="label">Password</label>
+            <div class="control">
+              <input
+                v-model="credentials.password"
+                class="input"
+                type="password"
+                placeholder="Enter a password"
+              />
+            </div>
           </div>
-        </div>
 
+          <div class="field is-grouped is-grouped-right">
+            <p class="control">
+              <button class="button is-info">{{ formTitle }}</button>
+            </p>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, reactive } from "vue";
 
 const register = ref(false);
 
 const formTitle = computed(() => {
   return register.value ? "Register" : "Login";
 });
+
+const credentials = reactive({
+  email: '',
+  password: ''
+})
+
+const onSubmit = () => {
+  if (!credentials.email || !credentials.password){
+    alert('Please enter an email and password gosh darnit!')
+  }else{
+
+    if(register.value){
+      console.log('Se registrar', credentials)
+    }else{
+      console.log('Logar', credentials)
+    }
+
+  }
+}
 </script>
 
 <style>

@@ -13,6 +13,11 @@
             </div>
 
             <div id="navbarBasicExample" class="navbar-menu" :class="{ 'is-active': showMobileNav }">
+                <div class="navbar-start">
+                    <button class="button is-small is-light mt-3 ml-3">
+                        Log out
+                    </button>
+                </div>
                 <div class="navbar-end">
 
                     <RouterLink
