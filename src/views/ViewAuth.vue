@@ -53,12 +53,15 @@
 </template>
 
 <script setup>
-import { ref, computed, reactive } from "vue";
+import { ref, computed, reactive } from "vue"
+import { useStoreAuth } from '@/stores/storeAuth'
 
-const register = ref(false);
+const storeAuth = useStoreAuth()
+
+const register = ref(false)
 
 const formTitle = computed(() => {
-  return register.value ? "Register" : "Login";
+  return register.value ? "Register" : "Login"
 });
 
 const credentials = reactive({
@@ -72,7 +75,7 @@ const onSubmit = () => {
   }else{
 
     if(register.value){
-      console.log('Se registrar', credentials)
+      storeAuth.registerUser(credentials)
     }else{
       console.log('Logar', credentials)
     }
