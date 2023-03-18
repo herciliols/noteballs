@@ -19,7 +19,7 @@ export const useStoreAuth = defineStore("storeAuth", {
            this.user.id = user.uid
            this.user.email = user.email
         } else {
-          console.log('user logged out:', user)
+           this.user = {}
         }
       })
     },

@@ -15,10 +15,10 @@
             <div id="navbarBasicExample" class="navbar-menu" :class="{ 'is-active': showMobileNav }">
                 <div class="navbar-start">
                     <button
-                      @click="storeAuth.logoutUser"
+                      v-if="storeAuth.user.id"
+                      @click="logout"
                       class="button is-small is-light mt-3 ml-3"
-                    >
-                        Log out
+                    > Log out {{  storeAuth.user.email }}
                     </button>
                 </div>
                 <div class="navbar-end">
@@ -47,12 +47,19 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref } from 'vue'
 import { useStoreAuth } from '@/stores/storeAuth'
 
 const storeAuth = useStoreAuth()
 
-const showMobileNav = ref(false);
+const showMobileNav = ref(false)
+
+
+const logout = () => {
+    storeAuth.logoutUser()
+    showMobileNav.value = false
+}
+
 
 </script>
 
