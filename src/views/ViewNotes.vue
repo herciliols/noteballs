@@ -49,7 +49,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { ref, watch, onMounted } from 'vue';
 import { storeToRefs } from 'pinia'
 import Note from '@/components/Notes/Note.vue';
 import { useStoreNotes } from '@/stores/storeNotes';
@@ -69,6 +69,12 @@ watch(NewNote, (newValue) => {
     if(NewNote.length===100){
         alert('Only 100 characters allowed gosh darnit!!');
     }
+})
+
+
+
+onMounted(() => {
+    storeNotes.getNotes()
 })
 
 

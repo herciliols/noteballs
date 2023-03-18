@@ -6,17 +6,17 @@
 </template>
 
 <script setup>
-import { onMounted, watch } from 'vue'
+import { onMounted } from 'vue'
 import NavBar from '@/components/Layout/NavBar.vue'
-import { useStoreNotes } from '@/stores/storeNotes'
+import { useStoreAuth } from '@/stores/storeAuth';
 
-
-const StoreNotes  = useStoreNotes()
-
+const storeAuth = useStoreAuth();
 
 onMounted(() => {
-    StoreNotes.getNotes()
+    storeAuth.init()
 })
+
+
 </script>
 
 
