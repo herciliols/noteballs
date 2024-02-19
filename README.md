@@ -4,10 +4,11 @@ Developed with VueJS and Bulma CSS Framework for creating and posting notes. Bef
 
 
 ## Functionalities
+- **Sign Up/Login:** Ability to create new users and log in. If you prefer to log in with an existing user in the database (Login: hercilioluzs@gmail.com, Password: 161091).
 
 - **Notes Creation:** Add your notes easily.
 
-- **Notes List:** View all your notes in an organized list.
+- **Notes List:** View all your notes in an organized chronological list, with the latest posted always at the top, taking into account even milliseconds to avoid conflicts of notes posted at the same hour, minutes, and seconds.
 
 - **Firebase Integration:** The notes are stored in real-time on Firebase for a seamless user experience. For example, if there are two users viewing the list of notes and one of them adds a note, it will appear in real-time without the need for page refresh.
 
