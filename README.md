@@ -9,7 +9,7 @@ Developed with VueJS and Bulma CSS Framework for creating and posting notes. Bef
 
 - **Notes List:** View all your notes in an organized list.
 
-- **Firebase Integration:** Notes are stored in real-time in Firebase for a seamless user experience.
+- **Firebase Integration:** The notes are stored in real-time on Firebase for a seamless user experience. For example, if there are two users viewing the list of notes and one of them adds a note, it will appear in real-time without the need for page refresh.
 
 ## Main Dependencies
 
