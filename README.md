@@ -1,6 +1,6 @@
 # 📝 Noteballs - Simple Real-Time Notes Application with VueJS and Bulma
 
-Developed with VueJS and Bulma CSS Framework for creating and posting notes. Before you begin, be sure to follow the instructions below to properly set up your project.
+Developed with Vue.js and Bulma CSS Framework for note creation. The backend is integrated with my Firebase account. Unfortunately, it won't be possible to run and evaluate the project on your machine due to the presence of sensitive data, such as Firebase connection credentials, stored in sensitive environment variables.
 
 ## 🚀 Functionalities
 - **Sign Up/Login:** Ability to create new users and log in. If you prefer to log in with an existing user in the database (Login: hercilioluzs@gmail.com, Password: 161091).
